@@ -1,0 +1,52 @@
+/* Primary Colors */
+.bg-rand-primary {
+    background-color: #38006B !important;
+}
+
+.bg-rand-primary-light {
+    background-color: #9C4DCC !important;
+}
+
+.bg-rand-primary-dark {
+    background-color: #38006b !important;
+}
+
+.border-rand-primary {
+    border-color: #38006B !important;
+}
+
+.border-rand-primary-light {
+    border-color: #9C4DCC !important;
+}
+
+.border-rand-primary-dark {
+    border-color: #38006b !important;
+}
+
+/* Secondary Colors */
+.bg-rand-secondary {
+    background-color: #e1bee7 !important;
+    color: black !important;
+}
+
+.bg-rand-secondary-light {
+    background-color: #fff1ff !important;
+    color: black !important;
+}
+
+.bg-rand-secondary-dark {
+    background-color: #af8eb5 !important;
+    color: black !important;
+}
+
+.border-rand-secondary {
+    border-color: #e1bee7 !important;
+}
+
+.border-rand-secondary-light {
+    border-color: #fff1ff !important;
+}
+
+.border-rand-secondary-dark {
+    border-color: #af8eb5 !important;
+}

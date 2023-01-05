@@ -1,0 +1,9 @@
+.rand-ideas-header-icon {
+    width: 1.5rem;
+    fill: white;
+    float: right;
+}
+
+.rand-ideas-header-icon:hover {
+    cursor: pointer;
+}
