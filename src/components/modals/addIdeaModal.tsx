@@ -9,6 +9,8 @@ import Button from 'react-bootstrap/Button';
 import Icon from '@mdi/react';
 import { mdiPlusBoxMultiple as AddIdeaIcon}  from '@mdi/js';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 type AddIdeaModalProp = {
     word: {
@@ -16,7 +18,8 @@ type AddIdeaModalProp = {
         name: string
     },
     category: number | null,
-    updateIdeas: Function
+    updateIdeas: Function,
+    userid: number
 }
 
 
@@ -34,11 +37,10 @@ function AddIdeaModal(props: AddIdeaModalProp) {// prop updated whenever word or
         const data = {
             idea,
             category: props.category,
-            word: props.word.id
+            word: props.word.id,
+            user: props.userid
         }
-    
-        console.log(data);
-    
+        
         const response = await axios.post(process.env.REACT_APP_API + '/ideas', data);
 
         setShow(false);
@@ -53,16 +55,17 @@ function AddIdeaModal(props: AddIdeaModalProp) {// prop updated whenever word or
 
     return ( 
         <>
-            <div className='d-inline' onClick={() => setShow(true)}>
-                <Icon  path={AddIdeaIcon} className='rand-ideas-header-icon ms-1'/>
-            </div>
+            <Button className='m-2 bg-rand-primary-dark border-rand-primary-dark' onClick={() => setShow(true)}>
+                Add Your Idea
+                <FontAwesomeIcon className="ms-2" icon={faPlusCircle}/>
+            </Button>
 
             <Modal id='rand-ideas-modal-add-idea' show={show} onHide={closeModal}>
                 <ModalHeader>
                     <ModalTitle>Add New Idea for ({props.word.name})</ModalTitle>
                 </ModalHeader>
                 <ModalBody>
-                    <FormControl className='mb-2' type='text' name='idea' onChange={(e => handleIdeaChange(e.currentTarget.value))}></FormControl>
+                    <FormControl as="textarea" rows={5} className='mb-2' type='text' name='idea' onChange={(e => handleIdeaChange(e.currentTarget.value))}></FormControl>
                     <Button onClick={(e) => submitIdea()}>Add Idea</Button>
                 </ModalBody>
             </Modal>

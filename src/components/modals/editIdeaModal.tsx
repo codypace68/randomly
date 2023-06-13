@@ -9,6 +9,8 @@ import Button from 'react-bootstrap/Button';
 import Icon from '@mdi/react';
 import { mdiPencilBoxMultiple as EditIdeaIcon}  from '@mdi/js';
 import axios from 'axios';
+import {type Idea} from '../../types';
+
 
 
 type EditIdeaModalProp = {
@@ -18,16 +20,20 @@ type EditIdeaModalProp = {
     },
     category: number | null,
     updateIdeas: Function,
-    checkedIdeaID: number,
-    checkedIdea: string
+    checkedIdea: Idea,
+    linkedWord: string | undefined
 }
 
 
 
 
 function EditIdeaModal(props: EditIdeaModalProp) {// prop updated whenever word or category changes
-    let [show, setShow] = React.useState<boolean | undefined>(false);
-    let [idea, setIdea] = React.useState<String>('');
+    let [show, setShow] = React.useState<boolean | undefined>();
+    let [idea, setIdea] = React.useState<Idea>();
+
+    React.useEffect(() => {
+        setIdea(props.checkedIdea);
+    }, [props.checkedIdea])
 
     const closeModal = () => {
         setShow(false);
@@ -39,39 +45,44 @@ function EditIdeaModal(props: EditIdeaModalProp) {// prop updated whenever word 
             category: props.category,
             word: props.word.id
         }
-    
-        console.log(data);
-    
-        const response = await axios.post(process.env.REACT_APP_API + '/ideas', data);
+        
+        console.log('request data', data);
+        const response = await axios.patch(process.env.REACT_APP_API + '/ideas', data);
 
         setShow(false);
         props.updateIdeas();
         return response.data.id    
     }
 
-    function handleIdeaChange(value: String) {
-        setIdea(value)
+    function handleIdeaChange(value: string) {
+        // create copy of current idea object for updating
+        const newIdea: Idea = JSON.parse(JSON.stringify(idea));
+        newIdea.idea = value;
+
+        setIdea(newIdea);
     }
 
 
-    return ( 
+    if (idea) {
+        return ( 
         <>
-            <div className='d-inline' onClick={() => setShow(true)}>
-                <Icon  path={EditIdeaIcon} className='rand-ideas-header-icon ms-1'  />
+            <div className='d-inline p-1' onClick={() => setShow(true)} style={{fontSize:'22px'}}>
+                Edit Idea
             </div>
 
             <Modal id='rand-ideas-modal-add-idea' show={show} onHide={closeModal}>
                 <ModalHeader>
-                    <ModalTitle>Edit Idea for word <b>{props.word.name}</b></ModalTitle>
+                    <ModalTitle>Edit Idea for word <b>{props.linkedWord}</b></ModalTitle>
                 </ModalHeader>
                 <ModalBody>
-                    <FormControl className='mb-2' type='text' name='idea' value={props.checkedIdeas[0]} onChange={(e => handleIdeaChange(e.currentTarget.value))}></FormControl>
+                    <FormControl as="textarea" rows={5} id="idea-text" className='mb-2' type='text' name='idea' value={idea.idea} onChange={(e => handleIdeaChange(e.currentTarget.value))}></FormControl>
                     <Button onClick={(e) => submitIdea()}>Save Idea</Button>
                 </ModalBody>
             </Modal>
         </>
 
-    )
+    ) 
+        } else return (<></>)
 }
 
 export default EditIdeaModal;

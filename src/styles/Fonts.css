@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'NotoSerifToto';
+    src: local('NotoSerifToto'), url(../../public/fonts/Noto_Serif_Toto/NotoSerifToto-VariableFont_wght.ttf) format('opentype');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */
+  }
+
+@font-face {
+    font-family: 'Solitreo-Regular';
+    src: local('Solitreo-Regular'), url(../../public/fonts/Solitreo-Regular.ttf) format('opentype');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                                'embedded-opentype', and 'svg' */
+}
+
+@font-face {
+    font-family: 'Dancing-Script';
+    src: local('Dancing_Script'), url(../../public/fonts/Dancing_Script/DancingScript-VariableFont_wght.ttf) format('opentype');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                                'embedded-opentype', and 'svg' */
+}
+
+
+  

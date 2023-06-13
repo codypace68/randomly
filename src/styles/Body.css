@@ -1,9 +1,22 @@
 .rand-ideas-header-icon {
-    width: 1.5rem;
+    width: 1.7rem;
     fill: white;
     float: right;
 }
 
 .rand-ideas-header-icon:hover {
     cursor: pointer;
+}
+
+.rand-word-select input {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+}
+
+@media (max-width: 2000px) and (min-width: 1000px) {
+    .rand-content {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
 }

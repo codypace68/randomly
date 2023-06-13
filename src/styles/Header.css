@@ -6,4 +6,11 @@
     height: 55px;
 }
 
+.rand-dropdown a.dropdown-toggle {
+    color: #fff;
+    padding: 4px;
+}
 
+.rand-dropdown a.dropdown-toggle::after {
+    display: none;
+}
