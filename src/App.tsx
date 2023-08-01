@@ -28,7 +28,7 @@ function App() {
   }
 
   return (
-    <GoogleOAuthProvider clientId='188196772999-80l9abu6bk3h1jbeamna9k74tbap1kl8.apps.googleusercontent.com'>
+    <GoogleOAuthProvider clientId='{{process.env.googleid}}'>
       <Router basename='/randomly'>
         <Routes>
           <Route 
