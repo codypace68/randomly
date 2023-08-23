@@ -55,7 +55,7 @@ function AddIdeaModal(props: AddIdeaModalProp) {// prop updated whenever word or
 
     return ( 
         <>
-            <Button className='m-2 bg-rand-primary-dark border-rand-primary-dark' onClick={() => setShow(true)}>
+            <Button className='m-2 bg-rand-primary-dark border-rand-primary-dark float-end' onClick={() => setShow(true)}>
                 Add Your Idea
                 <FontAwesomeIcon className="ms-2" icon={faPlusCircle}/>
             </Button>

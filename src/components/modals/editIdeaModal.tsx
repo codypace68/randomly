@@ -66,7 +66,7 @@ function EditIdeaModal(props: EditIdeaModalProp) {// prop updated whenever word 
     if (idea) {
         return ( 
         <>
-            <div className='d-inline p-1' onClick={() => setShow(true)} style={{fontSize:'22px'}}>
+            <div className='d-inline p-1' onClick={() => setShow(true)} style={{fontSize:'1rem'}}>
                 Edit Idea
             </div>
 

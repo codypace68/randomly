@@ -38,7 +38,7 @@ function DeleteIdeaButton(props: DeleteIdeaProp) {// prop updated whenever word 
 
     return ( 
         <>
-            <div className='d-inline p-1' onClick={() => deleteIdea()} style={{fontSize:'22px'}}>
+            <div className='d-inline p-1' onClick={() => deleteIdea()} style={{fontSize:'1rem'}}>
                 Delete Idea
             </div>
         </>

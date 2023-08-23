@@ -153,69 +153,92 @@ function Body(props: {userid: number, userChanged: boolean}) {
 
     return (
     <div className='rand-content'>
-        <Card className='m-3'>
-            <CardHeader className='bg-rand-primary-light text-light'>Create Inspiration</CardHeader>
-                <Container className='m-0' fluid>
-                    <Row className='border-bottom'>
-                        <Col md="12">
-                            <div className='flex-column flex m-0'>
-                                
-                                <Button onClick={(e) => populateNewWord(e)} className='m-2 bg-rand-primary-dark border-rand-primary-dark'>Inspire Me! <FontAwesomeIcon className="ms-2" icon={faLightbulb}/></Button>
-                                <AddIdeaModal word={selectedWord} category={1}  updateIdeas={updateIdeas} userid={props.userid}/>
-                                {/* <Button className='m-2 bg-rand-secondary-light border-rand-secondary-light'>Add New Word</Button> */}
-                            </div>
-                        </Col>                        
-                    </Row>
-                    <Row className='border-bottom ps-2 pe-2'>
-                        {/* Add a header above form select to describe what it is showing */}
-                        <Col md='12'>
-                            <h4 className='text-center mt-3'>Random Inspiration</h4>
-                        </Col>
-                        <Col className=' h-100 ml-2 justify-content-md-center' md="12">
-                                {/* TODO: change the dropdown icon to history icon to better reflect purpose */}
-                                <FormSelect id="word-display" onChange={(e) => handleWordSelectionChange(e)} value={selectedWord.name} className='mb-2 mt-2 d-inline-block border-0 text-center'>
-                                    {
-                                        words?.map( ({id, word}, index) => (
-                                            <option value={word} key={id} id={id.toString()}>{word}</option>
-                                        )
-                                        )
-                                    }
-                                </FormSelect>
-                        </Col>
-                    </Row>
-                </Container>
-        </Card>
-        <Card className='m-3'>
-            <CardHeader className='bg-rand-primary-light text-light'>Capture Your Ideas 
-
-            </CardHeader>
-                <Container className='m-0' fluid>
-                    {ideas.map(({id, idea, word, Word}) => (
-                        <div className='h-100 border-bottom mt-1'>
-                            <Row key={id} >
-                                {/* <div className='d-inline pe-0' style={{width: '30px', fontSize: '1.5rem', color:'#9f9f9f', lineHeight:'10px'}}>...</div> */}
-                                <Dropdown className='d-inline pe-0' style={{width: '30px', fontSize: '1.5rem', color:'#9f9f9f', lineHeight:'10px',}}>
-                                    <Dropdown.Toggle as={CustomToggle} /*onClick={(e) => handleIdeaSelection(e)}*/ variant="success">
-                                        <text id={id.toString()} data-linkedword={Word.word} onClick={(e) => handleIdeaSelection(e)}>...</text>
-                                    </Dropdown.Toggle>
-                                    <Dropdown.Menu>
-                                        <Dropdown.Item href="#" className='mb-3'><EditIdeaModal word={selectedWord} linkedWord={linkedWord} category={1} updateIdeas={updateIdeas} checkedIdea={selectedIdea}/></Dropdown.Item>
-                                        <Dropdown.Item href="#" ><DeleteIdeaButton updateIdeas={updateIdeas} checkedIdea={selectedIdea}/></Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
-                                {/* <FormCheck id={id.toString()} onChange={handleIdeaSelection} className='d-inline-block idea-selection pe-3 mt-0 rand-word-select' style={{width: '10px'}}></FormCheck> */}
-                                <p className='d-inline-block mb-1' style={{fontSize: "18px", width: "90%", fontFamily: "NotoSerifToto"}}>{idea}</p>
-                            </Row>
-                            <Row className='d-flex align-items-end'>
-                                <div className='text-secondary w-auto mb-2' style={{fontSize:'14px'}}>
-                                    #{Word.word}                 
+        <Row>
+            <Col md="6" className='mt-3'>
+                <Card className='m-3 h-100'>
+                    <CardHeader className='bg-rand-primary-light text-light'>Create Inspiration</CardHeader>
+                    <Container className='m-0' fluid>
+                        
+                        <Row className='border-bottom ps-2 pe-2'>
+                            {/* Add a header above form select to describe what it is showing */}
+                            <Col md='12'>
+                                <h4 className='text-center mt-3'>Random Inspiration</h4>
+                            </Col>
+                            <Col className=' h-100 ml-2 justify-content-md-center' md="12">
+                                    {/* TODO: change the dropdown icon to history icon to better reflect purpose */}
+                                    <FormSelect id="word-display" onChange={(e) => handleWordSelectionChange(e)} value={selectedWord.name} className='mb-2 mt-2 d-inline-block border-0 text-center'>
+                                        {
+                                            words?.map( ({id, word}, index) => (
+                                                <option value={word} key={id} id={id.toString()}>{word}</option>
+                                            )
+                                            )
+                                        }
+                                    </FormSelect>
+                            </Col>
+                        </Row>
+                        <Row className='border-top'>
+                            <Col md="12">
+                                <div className='flex-column flex m-0'>
+                                    
+                                    <Button onClick={(e) => populateNewWord(e)} className='m-2 bg-rand-primary-dark border-rand-primary-dark'>New Word! <FontAwesomeIcon className="ms-2" icon={faLightbulb}/></Button>
+                                    <AddIdeaModal word={selectedWord} category={1}  updateIdeas={updateIdeas} userid={props.userid}/>
+                                    {/* <Button className='m-2 bg-rand-secondary-light border-rand-secondary-light'>Add New Word</Button> */}
                                 </div>
-                            </Row>
-                        </div>
-                    ))
-                    }
-                </Container>
-        </Card> 
+                            </Col>                        
+                        </Row>
+                    </Container>
+                </Card>
+            </Col>
+        
+            <Col md='6' className='mt-3'>
+                <Card className='h-100 m-3'>
+                    <CardHeader className='bg-rand-primary-light text-light'>Suggestions</CardHeader>
+                    <Container className='m-0' fluid>
+                        <Row className='ps-2 pe-2'>
+                            {/* Add a header above form select to describe what it is showing */}
+                            <Col md='12'>
+                                <h4 className='text-center mt-3'>You can use <i>{selectedWord.name}</i> in a sentence.</h4>
+                            </Col>
+                        </Row>
+                    </Container>
+                </Card>
+            </Col>
+        </Row>
+        <Row>
+            <Col md='12' className='mt-3'>
+                <Card className='m-3'>
+                    <CardHeader className='bg-rand-primary-light text-light'>Capture Your Ideas 
+
+                    </CardHeader>
+                        <Container className='m-0' fluid>
+                            {ideas.map(({id, idea, word, Word}) => (
+                                <div className='h-100 border-bottom mt-1'>
+                                    <Row key={id} >
+                                        {/* <div className='d-inline pe-0' style={{width: '30px', fontSize: '1.5rem', color:'#9f9f9f', lineHeight:'10px'}}>...</div> */}
+                                        <Dropdown className='d-inline pe-0' style={{width: '30px', fontSize: '1rem', color:'#9f9f9f', lineHeight:'10px',}}>
+                                            <Dropdown.Toggle as={CustomToggle} /*onClick={(e) => handleIdeaSelection(e)}*/ variant="success">
+                                                <text id={id.toString()} data-linkedword={Word.word} onClick={(e) => handleIdeaSelection(e)}>...</text>
+                                            </Dropdown.Toggle>
+                                            <Dropdown.Menu style={{padding:'0px'}}>
+                                                <Dropdown.Item href="#" className='p-3'><EditIdeaModal word={selectedWord} linkedWord={linkedWord} category={1} updateIdeas={updateIdeas} checkedIdea={selectedIdea}/></Dropdown.Item>
+                                                <Dropdown.Item href="#" className='p-3'><DeleteIdeaButton updateIdeas={updateIdeas} checkedIdea={selectedIdea}/></Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
+                                        {/* <FormCheck id={id.toString()} onChange={handleIdeaSelection} className='d-inline-block idea-selection pe-3 mt-0 rand-word-select' style={{width: '10px'}}></FormCheck> */}
+                                        <p className='d-inline-block mb-1' style={{fontSize: "18px", width: "90%", fontFamily: "NotoSerifToto"}}>{idea}</p>
+                                    </Row>
+                                    <Row className='d-flex align-items-end'>
+                                        <div className='text-secondary w-auto mb-2' style={{fontSize:'14px'}}>
+                                            #{Word.word}                 
+                                        </div>
+                                    </Row>
+                                </div>
+                            ))
+                            }
+                        </Container>
+                </Card>
+            </Col>
+        </Row> 
     </div>
   );
 }
